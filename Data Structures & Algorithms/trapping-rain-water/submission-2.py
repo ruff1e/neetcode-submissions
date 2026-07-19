@@ -1,0 +1,28 @@
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        
+
+        # first return 0 if the list is empty since there can be no answer
+        if not height:
+            return 0
+
+        left, right = 0, len(height) - 1
+        leftMax, rightMax = height[left], height[right]
+        result = 0
+
+        #left=3  leftmax=3
+        #right=6 rightmax=3
+        # result = 9
+
+        while left < right:
+            if leftMax < rightMax:
+                left += 1
+                leftMax = max(leftMax, height[left])
+                result += leftMax - height[left]
+            else:
+                right -= 1
+                rightMax = max(rightMax, height[right])
+                result += rightMax - height[right]
+
+        
+        return result
